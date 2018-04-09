@@ -1,4 +1,13 @@
-//test.c for mimi_crt.lib
+/*
+**test.c**
+**
+**仅实现fopen/fread/fwrite/fclose/fseek*****************************************************
+**不实现buffer缓冲**************************************************************************
+**不对windows换行机制进行转换，即\r\n与\n之间的转换*****************************************
+**支持三种stdin/stdout/stderr标准输入输出***************************************************
+**vwindows使用CreateFile/ReadFile/WriteFile/CloseFile/CloseHandle/SetFilePointer************
+**
+*/
 
 #include "mini_crt.h"
 
