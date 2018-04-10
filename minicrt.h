@@ -19,6 +19,10 @@ extern "C" {
 #ifndef NULL
 #define NULL    (0)
 #endif
+#define EOF (-1)
+
+typedef int FILE;
+typedef void (*atexit_funct)(void);
 
 void free(void* ptr);
 void* malloc(unsigned size);
@@ -30,13 +34,6 @@ int strcmp(const char* src, const char* dst);
 char* strcpy(char* dest, char* str);
 unsigned strlen(const char* str);
 
-typedef int FILE;
-
-#define EOF (-1)
-
-
-
-
 int fputc(int c, FILE* stream);
 int fputs(const char* str, FILE* stream);
 int printf(const char* format, ...);
@@ -44,8 +41,6 @@ int fprintf(FILE* stream, const char* format, ...);
 
 void do_global_ctors();
 void mini_crt_call_exit_routine();
-
-typedef void (*atexit_funct)(void);
 
 #ifdef __cplusplus
     }

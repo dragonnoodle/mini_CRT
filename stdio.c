@@ -31,12 +31,12 @@ FILE* fopen(const char *filename, const char *mode)
         access |= GENERIC_WRITE;
         creation |= CREATE_ALWAYS;
     }
-        if(strcmp(mode,"w+") == 0)
+    if(strcmp(mode,"w+") == 0)
     {
         access |= GENERIC_WRITE |GENERIC_READ;
         creation |= CREATE_ALWAYS;
     }
-        if(strcmp(mode,"r") == 0)
+    if(strcmp(mode,"r") == 0)
     {
         access |= GENERIC_READ;
         creation += OPEN_EXISTING;
@@ -57,7 +57,7 @@ int
 fread(void* buffer, int size, int count, FILE *stream)
 {
     int read = 0;
-    if(Readfile((HANDLE)stream, buffer, size * count, &read, 0))
+    if(!Readfile((HANDLE)stream, buffer, size * count, &read, 0))
         return 0;
     return read;
     
@@ -110,7 +110,7 @@ read(int fd, void* buffer, unsigned size)
         "movl %3, %%edx    \n\t"
         "int $0x80     \n\t"
         "movl %%eax, %0    \n\t":
-        "=m"(ret):"m"(buffer),"m"(buffer),"m"(size));
+        "=m"(ret):"m"(fd),"m"(buffer),"m"(size));
         return ret;
 }
 
@@ -124,7 +124,7 @@ write(int fd, const void* buffer, unsigned size)
         "movl %3, %%edx    \n\t"
         "int $0x80     \n\t"
         "movl %%eax, %0    \n\t":
-        "=m"(ret):"m"(buffer),"m"(size));
+        "=m"(ret):"m"(fd),"m"(buffer),"m"(size));
     return ret;
 }
 

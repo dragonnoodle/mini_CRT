@@ -28,7 +28,7 @@ typedef struct _heap_header
 static heap_header *list_head = NULL;
 
 void 
-free(void* ptr)
+free(void* ptr)                         /*ptr指向header后的内存空间*/
 {
 	heap_header *header = (heap_header*)ADDR_ADD(ptr, -HEADER_SIZE);
 	if(header->type != HEAP_BLOCK_USED)
@@ -44,7 +44,7 @@ free(void* ptr)
 	if(header->next != NULL && header->next->type == HEAP_BLOCK_FREE)
 	{   
         header->next = header->next->next;       /*双向链表，此为前表指向后表*/
-        header->size +=header->next->size;
+        header->size +=header->next->size;       /*size为header+ptr_size*/
 	}
 }
 
