@@ -50,7 +50,7 @@ FILE* fopen(const char *filename, const char* mode);
 int fread(void* buffer, int size, int count, FILE* stream);
 int fwrite(const void* buffer, int size, int count, FILE* stream);
 int fclose(FILE* fp);
-int fseek(FILE* stream, const char* format, ...);
+int fseek(FILE* fp, int offset, int set);
 
 
 int fputc(int c, FILE* stream);
