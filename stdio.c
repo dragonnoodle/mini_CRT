@@ -9,7 +9,7 @@
 **
 */
 
-#include "minicrt.h"
+#include "mini_crt.h"
 
 int
 mini_crt_io_init(void)
@@ -57,7 +57,7 @@ int
 fread(void* buffer, int size, int count, FILE *stream)
 {
     int read = 0;
-    if(!Readfile((HANDLE)stream, buffer, size * count, &read, 0))
+    if(!ReadFile((HANDLE)stream, buffer, size * count, &read, 0))
         return 0;
     return read;
     

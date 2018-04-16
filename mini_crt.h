@@ -1,5 +1,5 @@
 /*
-**minicrt.h**
+**mini_crt.h**
 **
 **仅实现fopen/fread/fwrite/fclose/fseek*****************************************************
 **不实现buffer缓冲**************************************************************************
@@ -21,6 +21,17 @@ extern "C" {
 #endif
 #define EOF (-1)
 
+#ifdef WIN32    
+#define stdin   ((FILE*)(GetStdHangdle(STD_INPUT_HANDLE)))
+#define stdout   ((FILE*)(GetStdHangdle(STD_OUTPUT_HANDLE)))
+#define stderr   ((FILE*)(GetStdHangdle(STD_ERROR_HANDLE)))
+
+#else
+#define stdin   ((FILE*)0)
+#define stdout   ((FILE*)1)
+#define stderr   ((FILE*)2)    
+#endif
+
 typedef int FILE;
 typedef void (*atexit_funct)(void);
 
@@ -31,8 +42,16 @@ int mini_crt_init_heap();
 
 char* itoa(int n, char* str, int radix);
 int strcmp(const char* src, const char* dst);
-char* strcpy(char* dest, char* str);
+char* strcpy(char* dest, const char* src);
 unsigned strlen(const char* str);
+
+int mini_crt_init_io();
+FILE* fopen(const char *filename, const char* mode);
+int fread(void* buffer, int size, int count, FILE* stream);
+int fwrite(const void* buffer, int size, int count, FILE* stream);
+int fclose(FILE* fp);
+int fseek(FILE* stream, const char* format, ...);
+
 
 int fputc(int c, FILE* stream);
 int fputs(const char* str, FILE* stream);
@@ -41,6 +60,9 @@ int fprintf(FILE* stream, const char* format, ...);
 
 void do_global_ctors();
 void mini_crt_call_exit_routine();
+
+typedef void(*atexit_func_t)(void);
+int atexit(atexit_func_t func);
 
 #ifdef __cplusplus
     }

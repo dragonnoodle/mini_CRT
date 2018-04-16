@@ -8,7 +8,7 @@
 **virtualAlloc 和brk/sbrk仅仅是分配虚拟空间，一开始不会分配物理页面，***
 **当进程访问某一地址时，才将被访问地址所在页分配物理页******************
 */
-#include "minicrt.h"
+#include "mini_crt.h"
 
 typedef struct _heap_header
 {
