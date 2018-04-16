@@ -22,9 +22,9 @@ extern "C" {
 #define EOF (-1)
 
 #ifdef WIN32    
-#define stdin   ((FILE*)(GetStdHangdle(STD_INPUT_HANDLE)))
-#define stdout   ((FILE*)(GetStdHangdle(STD_OUTPUT_HANDLE)))
-#define stderr   ((FILE*)(GetStdHangdle(STD_ERROR_HANDLE)))
+#define stdin   ((FILE*)(GetStdHandle(STD_INPUT_HANDLE)))
+#define stdout   ((FILE*)(GetStdHandle(STD_OUTPUT_HANDLE)))
+#define stderr   ((FILE*)(GetStdHandle(STD_ERROR_HANDLE)))
 
 #else
 #define stdin   ((FILE*)0)
@@ -38,14 +38,14 @@ typedef void (*atexit_funct)(void);
 void free(void* ptr);
 void* malloc(unsigned size);
 static int brk(void* end_data_segment);
-int mini_crt_init_heap();
+int mini_crt_heap_init(void);
 
 char* itoa(int n, char* str, int radix);
 int strcmp(const char* src, const char* dst);
 char* strcpy(char* dest, const char* src);
 unsigned strlen(const char* str);
 
-int mini_crt_init_io();
+int mini_crt_io_init();
 FILE* fopen(const char *filename, const char* mode);
 int fread(void* buffer, int size, int count, FILE* stream);
 int fwrite(const void* buffer, int size, int count, FILE* stream);

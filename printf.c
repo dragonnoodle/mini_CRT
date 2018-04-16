@@ -60,7 +60,7 @@ vfprintf(FILE* stream, const char* format,va_list arglist)
                     translating = 0;
                     
                     itoa(va_arg(arglist, int), buf, 10);
-                    if(fputc(buf, stream) < 0)
+                    if(fputs(buf, stream) < 0)
                         return EOF;
                     ret += strlen(buf);
                 }

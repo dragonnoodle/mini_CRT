@@ -7,10 +7,10 @@ buildlib:
     
 buildbin:
 	gcc -c -ggdb -fno-builtin -nostdlib -fno-stack-protector test.c
-	ld -static -e mini_crt_entry entry.o test.o minicrt.a -o test
+	ld -static -e mini_crt_entry entry.o test.o minicrt.a -o test.exe
 
 run:
-	./test arg1 arg2 arg3
+	./test.exe arg1 arg2 arg3
 	
 	
 

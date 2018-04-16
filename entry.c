@@ -1,5 +1,4 @@
 #include "mini_crt.h"
-#define WIN32
 
 #ifdef WIN32
 #include <Windows.h>
