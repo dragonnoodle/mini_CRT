@@ -75,7 +75,7 @@ vfprintf(FILE* stream, const char* format,va_list arglist)
                     const char* str = va_arg(arglist, const char*);
                     translating = 0;
                     
-                    if(fputc(str, stream) < 0)
+                    if(fputs(str, stream) < 0)
                         return EOF;
                     ret += strlen(str);
                 }
